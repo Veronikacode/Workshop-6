@@ -12,41 +12,33 @@ import java.util.Optional;
 @Service
 @Primary
 @RequiredArgsConstructor
-public class JpaBookService implements MockBookService {
+public class JpaBookService implements BookService {
 
     private final BookRepository bookRepository;
 
     @Override
-    public List<Book> getAllBooks() {
+    public List<Book> getBooks() {
         return bookRepository.findAll();
     }
 
     @Override
-    public Optional<Book> getBookById(Long id) {
+    public Optional<Book> get(Long id) {
         return bookRepository.findById(id);
     }
 
     @Override
-    public void addBook(Book book) {
+    public void add(Book book) {
         bookRepository.save(book);
     }
 
     @Override
-    public boolean deleteBook(Long id) {
-        if (bookRepository.existsById(id)) {
-            bookRepository.deleteById(id);
-            return true;
-        }
-        return false;
+    public void delete(Long id) {
+        bookRepository.deleteById(id);
     }
 
     @Override
-    public boolean updateBook(Long id, Book book) {
-        if (bookRepository.existsById(book.getId())) {
-            bookRepository.save(book);
-            return true;
-        }
-        return false;
+    public void update(Book book) {
+        bookRepository.save(book);
     }
 }
 
