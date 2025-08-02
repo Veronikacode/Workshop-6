@@ -1,4 +1,9 @@
 package pl.coderslab.workshop6.repository;
 
-public class BookRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import pl.coderslab.workshop6.entity.Book;
+
+public interface BookRepository extends JpaRepository<Book, Long> {
 }
+
+
